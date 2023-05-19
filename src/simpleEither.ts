@@ -58,22 +58,6 @@ export class Either<E, A> {
     return this.chainLeft((e: E) => left(f(e)))
   }
 
-  orElse(f: (e: E) => A): A {
-    if (this.internal.type === "left") {
-      return f(this.internal.e)
-    } else {
-      return this.internal.a
-    }
-  }
-
-  orNull(): A | undefined {
-    if (this.internal.type === "left") {
-      return undefined
-    } else {
-      return this.internal.a
-    }
-  }
-
   eval(): EitherInternal<E, A> {
     return this.internal
   }
